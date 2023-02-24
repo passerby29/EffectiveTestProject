@@ -1,1 +1,1 @@
-# Echo Test Project
+# Effective Test Project
