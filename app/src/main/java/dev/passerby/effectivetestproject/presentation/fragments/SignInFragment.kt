@@ -1,13 +1,12 @@
 package dev.passerby.effectivetestproject.presentation.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dev.passerby.effectivetestproject.R
 import dev.passerby.effectivetestproject.databinding.FragmentSignInBinding
-import dev.passerby.effectivetestproject.presentation.activities.MainActivity
 
 class SignInFragment : Fragment() {
 
@@ -24,9 +23,9 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.intentBtn.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
+        binding.signInBtn.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.startContainer, LoginFragment())
+                .commit()
         }
     }
 }

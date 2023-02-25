@@ -17,4 +17,8 @@
     <style name="activeIndicator">
         <item name="android:color">@color/background_main</item>
     </style>
+
+    <style name="shape">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
