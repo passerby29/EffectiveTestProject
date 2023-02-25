@@ -7,12 +7,12 @@
     tools:context=".presentation.fragments.LoginFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/login_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Sign in"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/welcome_back_title"
         android:textColor="@color/black"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,43 +20,60 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_1"
-        android:layout_width="match_parent"
+        android:id="@+id/login_first_name_et"
+        style="@style/et_style"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:background="#E8E8E8"
-        android:importantForAutofill="no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
-        android:background="#E8E8E8"
-        android:importantForAutofill="no"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/et_background"
+        android:hint="@string/first_name_hint"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_1" />
+        app:layout_constraintTop_toBottomOf="@+id/login_title_tv"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password_til"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="40dp"
+        app:boxStrokeWidth="0dp"
+        app:passwordToggleEnabled="true"
+        app:hintTextColor="#7B7B7B"
+        app:hintEnabled="false"
+        app:expandedHintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_first_name_et">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_password_et"
+            style="@style/et_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
         android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Already have an account? Log in"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_btn" />
-
+        android:backgroundTint="@color/btn_background"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/sign_in_button"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/login_password_til"
+        app:layout_constraintStart_toStartOf="@+id/login_password_til"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_til" />
 </androidx.constraintlayout.widget.ConstraintLayout>

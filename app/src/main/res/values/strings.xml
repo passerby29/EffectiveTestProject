@@ -5,4 +5,11 @@
     <string name="title_cart">Cart</string>
     <string name="title_messages">Messages</string>
     <string name="title_profile">Profile</string>
+    <string name="title_sign_in">Sign in</string>
+    <string name="sign_in_button">Sign in</string>
+    <string name="email_hint">Email</string>
+    <string name="last_name_hint">Last name</string>
+    <string name="first_name_hint">First name</string>
+    <string name="welcome_back_title">Welcome back</string>
+    <string name="password_hint">Password</string>
 </resources>
