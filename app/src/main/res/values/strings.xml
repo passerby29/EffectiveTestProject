@@ -12,4 +12,8 @@
     <string name="first_name_hint">First name</string>
     <string name="welcome_back_title">Welcome back</string>
     <string name="password_hint">Password</string>
+    <string name="image_content_desc">image</string>
+    <string name="profile_title">Profile</string>
+    <string name="change_photo_hint">Change photo</string>
+    <string name="name_placeholder">Yusuf Muratov</string>
 </resources>
