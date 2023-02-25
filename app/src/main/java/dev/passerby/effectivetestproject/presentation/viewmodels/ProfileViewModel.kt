@@ -1,4 +1,4 @@
-package dev.passerby.effectivetestproject.ui.profile
+package dev.passerby.effectivetestproject.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 

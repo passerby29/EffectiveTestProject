@@ -1,4 +1,4 @@
-package dev.passerby.effectivetestproject.ui.profile
+package dev.passerby.effectivetestproject.presentation.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dev.passerby.effectivetestproject.R
+import dev.passerby.effectivetestproject.presentation.viewmodels.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 

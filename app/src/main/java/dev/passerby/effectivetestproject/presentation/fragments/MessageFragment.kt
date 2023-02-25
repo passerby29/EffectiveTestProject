@@ -1,4 +1,4 @@
-package dev.passerby.effectivetestproject.ui.message
+package dev.passerby.effectivetestproject.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dev.passerby.effectivetestproject.R
+import dev.passerby.effectivetestproject.presentation.viewmodels.MessageViewModel
 
 class MessageFragment : Fragment() {
 

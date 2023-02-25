@@ -1,4 +1,4 @@
-package dev.passerby.effectivetestproject.ui.dashboard
+package dev.passerby.effectivetestproject.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
