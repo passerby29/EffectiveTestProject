@@ -32,4 +32,18 @@
     <string name="background_cards">background</string>
     <string name="item_name_placeholder">Samsung S10</string>
     <string name="price_placeholder">$ 180,000</string>
+    <string name="return_btn_content_desc">return_btn</string>
+    <string name="add_to_fav_content_desc">add_to_fav</string>
+    <string name="divider_content_desc">divider</string>
+    <string name="share_item_content_desc">share_item</string>
+    <string name="item_image_content_desc">item_image</string>
+    <string name="item_selected_name_placeholder">New Balance Sneakers</string>
+    <string name="desc_placeholder">Features waterproof, fire, air resistant shoes.all changed when the country of fire attacked</string>
+    <string name="item_selected_price_placeholder">$ 22.50</string>
+    <string name="reviews_icon_content_desc">reviews_icon</string>
+    <string name="reviews_mark_placeholder">3.9</string>
+    <string name="count_of_reviews_placeholder">(4000 reviews)</string>
+    <string name="color_placeholder">Color</string>
+    <string name="quantity_title">Quantity:</string>
+    <string name="btn_add_to_cart_placeholder">$2,500 Add to cart</string>
 </resources>
