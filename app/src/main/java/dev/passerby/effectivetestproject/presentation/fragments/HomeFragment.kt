@@ -23,10 +23,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.item.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment_activity_main, ItemFragment())
-                .commit()
-        }
+        childFragmentManager.beginTransaction().replace(R.id.child_container, HomeFragmentA())
+            .addToBackStack(null)
+            .commit()
     }
 }

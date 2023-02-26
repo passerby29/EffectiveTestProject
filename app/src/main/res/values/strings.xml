@@ -16,4 +16,20 @@
     <string name="profile_title">Profile</string>
     <string name="change_photo_hint">Change photo</string>
     <string name="name_placeholder">Yusuf Muratov</string>
+    <string name="menu_content_desc">menu</string>
+    <string name="home_fragment_a_title">Trade by bata</string>
+    <string name="location_title">Location</string>
+    <string name="phones_title">Phones</string>
+    <string name="headphones_title">Headphones</string>
+    <string name="games_title">Games</string>
+    <string name="cars_title">Cars</string>
+    <string name="furniture_title">Furniture</string>
+    <string name="kids_title">Kids</string>
+    <string name="search_hint">What are you looking for?</string>
+    <string name="latest_title">Latest</string>
+    <string name="view_all_title">View all</string>
+    <string name="flash_sale_title">Flash sale</string>
+    <string name="background_cards">background</string>
+    <string name="item_name_placeholder">Samsung S10</string>
+    <string name="price_placeholder">$ 180,000</string>
 </resources>
