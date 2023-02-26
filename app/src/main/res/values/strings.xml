@@ -15,7 +15,7 @@
     <string name="image_content_desc">image</string>
     <string name="profile_title">Profile</string>
     <string name="change_photo_hint">Change photo</string>
-    <string name="name_placeholder">Yusuf Muratov</string>
+    <string name="name_placeholder">Satria Adhi Pradana</string>
     <string name="menu_content_desc">menu</string>
     <string name="home_fragment_a_title">Trade by bata</string>
     <string name="location_title">Location</string>
@@ -46,4 +46,6 @@
     <string name="color_placeholder">Color</string>
     <string name="quantity_title">Quantity:</string>
     <string name="btn_add_to_cart_placeholder">$2,500 Add to cart</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_with_apple">Sign in with Apple</string>
 </resources>

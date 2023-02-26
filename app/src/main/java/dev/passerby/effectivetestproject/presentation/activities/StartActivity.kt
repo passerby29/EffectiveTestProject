@@ -11,6 +11,7 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         supportActionBar?.hide()
         supportFragmentManager.beginTransaction().replace(R.id.startContainer, SignInFragment())
+            .addToBackStack(null)
             .commit()
     }
 }

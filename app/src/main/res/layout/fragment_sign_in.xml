@@ -22,7 +22,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/sign_in_first_name_et"
         style="@style/et_style"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="60dp"
@@ -38,7 +38,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/sign_in_last_name_et"
         style="@style/et_style"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
@@ -54,7 +54,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/sign_in_email_et"
         style="@style/et_style"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
@@ -69,7 +69,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_btn"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
         android:backgroundTint="@color/btn_background"
@@ -86,10 +86,42 @@
         android:id="@+id/sign_it_have_account_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginTop="16dp"
+        android:textSize="10sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#808080"
         app:layout_constraintStart_toStartOf="@+id/sign_in_btn"
         app:layout_constraintTop_toBottomOf="@id/sign_in_btn"
-        tools:text="Already have an account? Log in" />
+        tools:text="Already have an account? Log in"
+        tools:ignore="SmallSp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_it_have_account_tv">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/sign_in_with_google"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/ic_google" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/sign_in_with_apple"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/ic_apple" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

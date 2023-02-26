@@ -22,7 +22,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/login_first_name_et"
         style="@style/et_style"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
@@ -37,12 +37,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password_til"
-        android:layout_width="280dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="40dp"
         app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
         app:passwordToggleEnabled="true"
         app:hintTextColor="#7B7B7B"
         app:hintEnabled="false"
