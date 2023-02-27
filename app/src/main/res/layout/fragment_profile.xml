@@ -24,6 +24,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/profile_title"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#C0C0C0"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat_regular"
+        android:fontFamily="@font/montserrat_medium"
         android:text="@string/change_photo_hint"
+        android:textColor="#808080"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="@id/image"
         app:layout_constraintStart_toStartOf="@id/image"
@@ -59,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_bold"
+        android:textColor="#3F3F3F"
         android:text="@string/name_placeholder"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/profile_change_photo_tv"
@@ -68,7 +73,7 @@
     <Button
         android:id="@+id/profile_btn"
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="280dp"
+        android:layout_width="290dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/btn_background"
@@ -83,7 +88,8 @@
         app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name_tv"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ScrollView
         android:scrollbars="none"
@@ -123,6 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Trade store"
                     android:textSize="16sp" />
@@ -153,6 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Payment method"
                     android:textSize="16sp" />
@@ -183,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Balance"
                     android:textSize="16sp" />
@@ -191,8 +200,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="$ 1593"
+                    android:textColor="#040402"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -216,6 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Trade history"
                     android:textSize="16sp" />
@@ -246,6 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Restore purchase"
                     android:textSize="16sp" />
@@ -276,6 +288,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Help"
                     android:textSize="16sp" />
@@ -301,6 +314,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
+                    android:textColor="#040402"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="Log out"
                     android:textSize="16sp" />

@@ -37,7 +37,8 @@
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/shape" />
+        app:shapeAppearance="@style/shape"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/home_a_location_tv"
@@ -50,7 +51,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/home_a_search_til"
-        android:layout_width="280dp"
+        android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
@@ -68,169 +69,176 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/home_a_search_et"
+            style="@style/et_style"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/et_background"
+            android:layout_height="32dp"
+            android:background="@drawable/et_background2"
             android:fontFamily="@font/poppins"
-            android:gravity="center_horizontal|bottom"
             android:hint="@string/search_hint"
             android:imeOptions="actionSearch"
             android:inputType="textCapSentences"
-            android:paddingBottom="8dp"
-            android:textSize="12sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+    <HorizontalScrollView
         android:id="@+id/home_a_categories_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_a_search_til">
 
         <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_phone"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/phones_title"
-                android:textSize="8sp" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_phone"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/phones_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_headphones"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/headphones_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_game"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/games_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_car"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/cars_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_furniture"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/furniture_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="#EEEFF4"
+                    android:src="@drawable/ic_kids"
+                    app:contentPadding="4dp"
+                    app:shapeAppearance="@style/shape" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/kids_title"
+                    android:textSize="8sp" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_headphones"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/headphones_title"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_game"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/games_title"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_car"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/cars_title"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_furniture"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/furniture_title"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#EEEFF4"
-                android:src="@drawable/ic_kids"
-                app:contentPadding="4dp"
-                app:shapeAppearance="@style/shape" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="@string/kids_title"
-                android:textSize="8sp" />
-        </LinearLayout>
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/home_a_latest_tv"
@@ -539,7 +547,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_weight="1"
                         android:text="@string/price_placeholder"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="10sp" />
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -604,7 +612,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_weight="1"
                         android:text="@string/price_placeholder"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="10sp" />
 
                     <com.google.android.material.imageview.ShapeableImageView

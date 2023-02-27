@@ -29,6 +29,7 @@ class SignInFragment : Fragment() {
             setOnClickListener {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.startContainer, LoginFragment())
+                    .addToBackStack(null)
                     .commit()
             }
 
