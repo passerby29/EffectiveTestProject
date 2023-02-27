@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.EffectiveTestProject" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.EffectiveTestProject" parent="Theme.Material3.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -16,6 +16,10 @@
 
     <style name="shape">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="activeIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#EEEFF4</item>
     </style>
 
     <style name="et_style">
