@@ -6,9 +6,9 @@ interface MainRepository {
 
     fun getSelectedItem(): SelectedItem
 
-    fun getFlashSaleList(): FlashSaleItems
+    fun getFlashSaleItemsList(): FlashSaleItems
 
-    fun getLatestList(): LatestItems
+    fun getLatestItemsList(): LatestItems
 
     fun getSearchWords(): SearchWords
 }
