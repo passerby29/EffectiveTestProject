@@ -1,7 +1,7 @@
-package dev.passerby.effectivetestproject.presentation.fragments
+package dev.passerby.effectivetestproject.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class HomeAViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
