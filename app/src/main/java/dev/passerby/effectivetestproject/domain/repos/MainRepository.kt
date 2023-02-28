@@ -1,14 +1,15 @@
 package dev.passerby.effectivetestproject.domain.repos
 
 import dev.passerby.effectivetestproject.domain.models.*
+import retrofit2.Response
 
 interface MainRepository {
 
-    fun getSelectedItem(): SelectedItem
+    suspend fun getSelectedItem(): Response<SelectedItem>?
 
-    fun getFlashSaleItemsList(): FlashSaleItems
+    suspend fun getFlashSaleItemsList(): Response<FlashSaleItems>?
 
-    fun getLatestItemsList(): LatestItems
+    suspend fun getLatestItemsList(): Response<LatestItems>?
 
-    fun getSearchWords(): SearchWords
+    suspend fun getSearchWords(): Response<SearchWords>?
 }

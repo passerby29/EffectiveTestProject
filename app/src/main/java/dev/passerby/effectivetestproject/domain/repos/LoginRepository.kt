@@ -4,7 +4,7 @@ import dev.passerby.effectivetestproject.domain.models.User
 
 interface LoginRepository {
 
-    fun addUser(user: User)
+    suspend fun addUser(user: User)
 
-    fun getUser(first_name: String): User
+    suspend fun getUser(first_name: String): User
 }
