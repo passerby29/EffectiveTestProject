@@ -1,6 +1,7 @@
 package dev.passerby.effectivetestproject.presentation.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import dev.passerby.effectivetestproject.data.impls.LoginRepositoryImpl
 import dev.passerby.effectivetestproject.domain.models.User
 import dev.passerby.effectivetestproject.domain.usecases.AddUserUseCase
+import dev.passerby.effectivetestproject.domain.usecases.CheckIsUserExistsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,6 +19,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private val repository = LoginRepositoryImpl(application)
 
     private val addUserUseCase = AddUserUseCase(repository)
+    private val checkIsUserExistsUseCase = CheckIsUserExistsUseCase(repository)
 
     private val _errorInputFirstName = MutableLiveData<Boolean>()
     val errorInputFirstName: LiveData<Boolean>
@@ -30,6 +33,10 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     val errorInputEmail: LiveData<Boolean>
         get() = _errorInputEmail
 
+    private val _shouldCloseScreen = MutableLiveData<Unit>()
+    val shouldCloseScreen: LiveData<Unit>
+        get() = _shouldCloseScreen
+
     fun addUser(inputFirstName: String?, inputLastName: String?, inputEmail: String?) =
         viewModelScope.launch(Dispatchers.IO) {
             val firstName = parseInput(inputFirstName)
@@ -37,10 +44,21 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
             val email = parseInput(inputEmail)
             val fieldsValid = validateInput(firstName, lastName, email)
             if (fieldsValid) {
-                val user = User(firstName, lastName, email)
-                addUserUseCase.addUser(user)
+                val list = checkUserIsExists(email)
+                if (list.isNotEmpty()) {
+                    Log.d("SignInViewModel", "addUser: Error")
+                } else {
+                    val user = User(firstName, lastName, email)
+                    addUserUseCase.addUser(user)
+                    Log.d("SignInViewModel", "addUser: Success")
+                    finishWork()
+                }
             }
         }
+
+    private suspend fun checkUserIsExists(email: String): List<User> {
+        return checkIsUserExistsUseCase.checkUserIsExists(email)
+    }
 
     private fun parseInput(input: String?): String {
         return input?.trim() ?: ""
@@ -77,5 +95,9 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     fun resetErrorInputEmail() {
         _errorInputEmail.value = false
+    }
+
+    private fun finishWork() {
+        _shouldCloseScreen.postValue(Unit)
     }
 }

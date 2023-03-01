@@ -1,9 +1,13 @@
 package dev.passerby.effectivetestproject.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.text.*
-import android.view.*
-import android.widget.Toast
+import android.text.Editable
+import android.text.Html
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dev.passerby.effectivetestproject.R
@@ -15,6 +19,16 @@ class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: SignInViewModel
+    private lateinit var onEditingFinishedListener: OnEditingFinishedListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnEditingFinishedListener) {
+            onEditingFinishedListener = context
+        } else {
+            throw RuntimeException("Activity  must implement OnEditingFinishedListener")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +58,13 @@ class SignInFragment : Fragment() {
             val inputLastName = binding.signInLastNameEt.text?.toString()
             val inputEmail = binding.signInEmailEt.text?.toString()
             viewModel.addUser(inputFirstName, inputLastName, inputEmail)
-            Toast.makeText(requireContext(), "Account created successfully!", Toast.LENGTH_SHORT)
-                .show()
-//            changeFragment()
         }
     }
 
     private fun observeViewModel() {
+        viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
+            onEditingFinishedListener.onEditingFinished()
+        }
         viewModel.errorInputFirstName.observe(viewLifecycleOwner) {
             val msg = if (it) {
                 "Invalid First Name"
@@ -121,5 +135,9 @@ class SignInFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
 
         })
+    }
+
+    interface OnEditingFinishedListener {
+        fun onEditingFinished() {}
     }
 }
