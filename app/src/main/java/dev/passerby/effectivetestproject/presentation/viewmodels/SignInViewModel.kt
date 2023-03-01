@@ -8,14 +8,12 @@ import androidx.lifecycle.MutableLiveData
 import dev.passerby.effectivetestproject.data.impls.LoginRepositoryImpl
 import dev.passerby.effectivetestproject.domain.models.User
 import dev.passerby.effectivetestproject.domain.usecases.AddUserUseCase
-import dev.passerby.effectivetestproject.domain.usecases.GetUserUseCase
 
 @Suppress("unused")
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = LoginRepositoryImpl(application)
 
-    private val getUserUseCase = GetUserUseCase(repository)
     private val addUserUseCase = AddUserUseCase(repository)
 
     private val _errorInputFirstName = MutableLiveData<Boolean>()
@@ -29,20 +27,6 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private val _errorInputEmail = MutableLiveData<Boolean>()
     val errorInputEmail: LiveData<Boolean>
         get() = _errorInputEmail
-
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
-
-    suspend fun getUser(first_name: String?) {
-        val firstName = parseInput(first_name)
-        if (firstName.isBlank()) {
-            _errorInputFirstName.value = true
-        } else {
-            val user = getUserUseCase.getUser(firstName)
-            _user.value = user
-        }
-    }
 
     suspend fun addUser(first_name: String?, last_name: String?, _email: String?) {
         val firstName = parseInput(first_name)
