@@ -1,7 +1,8 @@
 package dev.passerby.effectivetestproject.data.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-@Suppress("unused")
+
 @Dao
 interface UserDao {
 

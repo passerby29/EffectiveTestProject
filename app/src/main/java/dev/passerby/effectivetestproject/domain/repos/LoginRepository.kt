@@ -1,5 +1,6 @@
 package dev.passerby.effectivetestproject.domain.repos
 
+import androidx.lifecycle.LiveData
 import dev.passerby.effectivetestproject.domain.models.User
 
 interface LoginRepository {
