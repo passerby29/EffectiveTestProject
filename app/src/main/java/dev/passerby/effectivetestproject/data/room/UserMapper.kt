@@ -1,7 +1,7 @@
 package dev.passerby.effectivetestproject.data.room
 
 import dev.passerby.effectivetestproject.domain.models.User
-@Suppress("unused")
+
 class UserMapper {
     fun mapEntityToDbModel(user: User) = UserEntity(
         first_name = user.first_name,
@@ -14,4 +14,8 @@ class UserMapper {
         last_name = userEntity.last_name,
         email = userEntity.email,
     )
+
+    fun mapListDbModel(list: List<UserEntity>) = list.map {
+        mapDbModelToEntity(it)
+    }
 }

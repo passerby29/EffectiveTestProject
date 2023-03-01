@@ -7,4 +7,6 @@ interface LoginRepository {
     suspend fun addUser(user: User)
 
     suspend fun getUser(first_name: String): User
+
+    suspend fun checkUserIsExists(email: String): List<User>
 }
