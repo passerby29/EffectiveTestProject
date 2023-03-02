@@ -15,9 +15,9 @@ class LoginRepositoryImpl(application: Application) : LoginRepository {
         userDao.addUser(mapper.mapEntityToDbModel(user))
     }
 
-    override suspend fun getUser(first_name: String): User {
+    override suspend fun getUser(first_name: String): List<User> {
         val entity = userDao.getUser(first_name)
-        return mapper.mapDbModelToEntity(entity)
+        return mapper.mapListDbModel(entity)
     }
 
     override suspend fun checkUserIsExists(email: String): List<User> {

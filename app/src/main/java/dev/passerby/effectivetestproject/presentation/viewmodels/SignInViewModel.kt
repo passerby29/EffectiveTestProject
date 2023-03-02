@@ -10,6 +10,7 @@ import dev.passerby.effectivetestproject.data.impls.LoginRepositoryImpl
 import dev.passerby.effectivetestproject.domain.models.User
 import dev.passerby.effectivetestproject.domain.usecases.AddUserUseCase
 import dev.passerby.effectivetestproject.domain.usecases.CheckIsUserExistsUseCase
+import dev.passerby.effectivetestproject.presentation.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -20,6 +21,8 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     private val addUserUseCase = AddUserUseCase(repository)
     private val checkIsUserExistsUseCase = CheckIsUserExistsUseCase(repository)
+
+    private val utils = Utils()
 
     private val _errorInputFirstName = MutableLiveData<Boolean>()
     val errorInputFirstName: LiveData<Boolean>
@@ -39,9 +42,9 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     fun addUser(inputFirstName: String?, inputLastName: String?, inputEmail: String?) =
         viewModelScope.launch(Dispatchers.IO) {
-            val firstName = parseInput(inputFirstName)
-            val lastName = parseInput(inputLastName)
-            val email = parseInput(inputEmail)
+            val firstName = utils.parseInput(inputFirstName)
+            val lastName = utils.parseInput(inputLastName)
+            val email = utils.parseInput(inputEmail)
             val fieldsValid = validateInput(firstName, lastName, email)
             if (fieldsValid) {
                 val list = checkUserIsExists(email)
@@ -58,10 +61,6 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     private suspend fun checkUserIsExists(email: String): List<User> {
         return checkIsUserExistsUseCase.checkUserIsExists(email)
-    }
-
-    private fun parseInput(input: String?): String {
-        return input?.trim() ?: ""
     }
 
     private fun validateInput(

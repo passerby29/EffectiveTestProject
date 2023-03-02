@@ -5,7 +5,7 @@ import dev.passerby.effectivetestproject.domain.repos.LoginRepository
 
 @Suppress("unused")
 class GetUserUseCase(private val repository: LoginRepository) {
-    suspend fun getUser(first_name: String): User {
+    suspend fun getUser(first_name: String): List<User> {
         return repository.getUser(first_name)
     }
 }
