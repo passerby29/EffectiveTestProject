@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:paddingBottom="70dp"
     tools:context=".presentation.fragments.ProfileFragment">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/profile_return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -31,17 +32,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image"
+        android:id="@+id/profile_user_image_iv"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#C0C0C0"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_title_tv"
-        app:shapeAppearance="@style/shape" />
+        app:shapeAppearance="@style/shape"
+        app:strokeColor="#C0C0C0"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/profile_change_photo_tv"
@@ -52,9 +53,9 @@
         android:text="@string/change_photo_hint"
         android:textColor="#808080"
         android:textSize="8sp"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/profile_user_image_iv"
+        app:layout_constraintStart_toStartOf="@id/profile_user_image_iv"
+        app:layout_constraintTop_toBottomOf="@id/profile_user_image_iv"
         tools:ignore="SmallSp" />
 
     <TextView
@@ -63,17 +64,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_bold"
-        android:textColor="#3F3F3F"
         android:text="@string/name_placeholder"
+        android:textColor="#3F3F3F"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/profile_change_photo_tv"
         app:layout_constraintStart_toStartOf="@+id/profile_change_photo_tv"
         app:layout_constraintTop_toBottomOf="@+id/profile_change_photo_tv" />
 
     <Button
-        android:id="@+id/profile_btn"
+        android:id="@+id/profile_upload_item_btn"
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="290dp"
+        android:layout_width="288dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/btn_background"
@@ -91,235 +92,101 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_name_tv"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <ScrollView
-        android:scrollbars="none"
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="300dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_btn">
+        app:layout_constraintTop_toBottomOf="@+id/profile_upload_item_btn">
 
         <LinearLayout
             android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_credit_card"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="Trade store"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_credit_card"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Trade store"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward" />
-            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_credit_card"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="Payment method"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginBottom="24dp">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_credit_card"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/settingsButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Payment method"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_credit_card"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:background="@drawable/btn_background2"
+                    android:drawableStart="@drawable/ic_credit_card"
+                    android:elevation="0dp"
+                    android:enabled="false"
                     android:text="Balance"
-                    android:textSize="16sp" />
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="$ 1593"
-                    android:textColor="#040402"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_credit_card"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="Trade history"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_credit_card"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_restore"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:text="Restore Purchase"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Trade history"
-                    android:textSize="16sp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profile_help_btn"
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_question"
+                android:text="Help"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_restore"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Restore purchase"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_question"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Help"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#EEEFF4"
-                    android:src="@drawable/ic_logout"
-                    app:contentPadding="4dp"
-                    app:shapeAppearance="@style/shape" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:textColor="#040402"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Log out"
-                    android:textSize="16sp" />
-            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profile_logout_btn"
+                style="@style/settingsButtonStyle"
+                android:background="@drawable/btn_background2"
+                android:drawableStart="@drawable/ic_logout"
+                android:elevation="0dp"
+                android:layout_marginBottom="0dp"
+                android:text="Log out"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

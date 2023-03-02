@@ -56,7 +56,7 @@
             android:id="@+id/login_password_et"
             style="@style/et_style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:background="@drawable/et_background"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
