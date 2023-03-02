@@ -81,6 +81,27 @@
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="12dp"
+        android:padding="8dp"
+        android:background="@color/et_background"
+        app:layout_constraintEnd_toEndOf="@+id/home_a_search_til"
+        app:layout_constraintStart_toStartOf="@+id/home_a_search_til"
+        app:layout_constraintTop_toBottomOf="@+id/home_a_search_til">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            tools:listitem="@layout/rv_words_item"
+            tools:itemCount="6"/>
+    </androidx.cardview.widget.CardView>
+
     <HorizontalScrollView
         android:id="@+id/home_a_categories_ll"
         android:layout_width="match_parent"
