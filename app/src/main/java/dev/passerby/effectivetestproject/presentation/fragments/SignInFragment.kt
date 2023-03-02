@@ -19,14 +19,14 @@ class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: SignInViewModel
-    private lateinit var onEditingFinishedListener: OnEditingFinishedListener
+    private lateinit var onEditingFinishedListenerSignIn: OnEditingFinishedListenerSignIn
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnEditingFinishedListener) {
-            onEditingFinishedListener = context
+        if (context is OnEditingFinishedListenerSignIn) {
+            onEditingFinishedListenerSignIn = context
         } else {
-            throw RuntimeException("Activity  must implement OnEditingFinishedListener")
+            throw RuntimeException("Activity  must implement OnEditingFinishedListenerSignIn")
         }
     }
 
@@ -63,7 +63,7 @@ class SignInFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            onEditingFinishedListener.onEditingFinished()
+            onEditingFinishedListenerSignIn.onEditingFinishedSignIn()
         }
         viewModel.errorInputFirstName.observe(viewLifecycleOwner) {
             val msg = if (it) {
@@ -137,7 +137,7 @@ class SignInFragment : Fragment() {
         })
     }
 
-    interface OnEditingFinishedListener {
-        fun onEditingFinished() {}
+    interface OnEditingFinishedListenerSignIn {
+        fun onEditingFinishedSignIn() {}
     }
 }

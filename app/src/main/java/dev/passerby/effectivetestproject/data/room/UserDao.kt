@@ -6,7 +6,7 @@ import androidx.room.*
 interface UserDao {
 
     @Query("select * from Users where first_name = :first_name")
-    suspend fun getUser(first_name: String): UserEntity
+    suspend fun getUser(first_name: String): List<UserEntity>
 
     @Query("select * from Users where email = :email")
     suspend fun checkUserIsExists(email: String): List<UserEntity>
