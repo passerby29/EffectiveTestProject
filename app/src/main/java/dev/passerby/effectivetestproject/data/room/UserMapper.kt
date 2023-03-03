@@ -9,13 +9,13 @@ class UserMapper {
         email = user.email,
     )
 
-    fun mapDbModelToEntity(userEntity: UserEntity) = User(
+    fun mapListDbModel(list: List<UserEntity>) = list.map {
+        mapDbModelToEntity(it)
+    }
+
+    private fun mapDbModelToEntity(userEntity: UserEntity) = User(
         first_name = userEntity.first_name,
         last_name = userEntity.last_name,
         email = userEntity.email,
     )
-
-    fun mapListDbModel(list: List<UserEntity>) = list.map {
-        mapDbModelToEntity(it)
-    }
 }

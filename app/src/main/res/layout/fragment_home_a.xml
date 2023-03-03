@@ -81,6 +81,40 @@
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/predictions_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="12dp"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:background="@color/et_background"
+        app:layout_constraintEnd_toEndOf="@+id/home_a_search_til"
+        app:layout_constraintStart_toStartOf="@+id/home_a_search_til"
+        app:layout_constraintTop_toBottomOf="@+id/home_a_search_til">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="#393939"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:overScrollMode="never"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/rv_words_item"
+            tools:itemCount="6"/>
+    </androidx.cardview.widget.CardView>
+
     <HorizontalScrollView
         android:id="@+id/home_a_categories_ll"
         android:layout_width="match_parent"
@@ -99,7 +133,8 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+            android:paddingEnd="20dp"
+            tools:ignore="VisualLintBounds">
 
             <LinearLayout
                 android:layout_width="52dp"

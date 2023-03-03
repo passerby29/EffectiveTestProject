@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+
 @Suppress("unused")
 @Database(
-    entities = [UserEntity::class],
+    entities = [UserEntity::class, SearchWordsEntity::class],
     exportSchema = false,
-    version = 1
+    version = 2
 )
 abstract class EffectiveAppDB : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+    abstract fun getSearchWordsDao(): SearchWordsDao
 
     companion object {
         @Volatile
