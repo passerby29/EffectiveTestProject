@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
@@ -36,11 +37,29 @@ class HomeFragmentA : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        //addTextChangeListeners()
+        addSearch()
+        loadLatest()
+    }
+
+    private fun loadLatest() {
+        viewModel.getLatestList()
+        viewModel.latestListResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is BaseResponse.Loading -> {}
+                is BaseResponse.Success -> {
+                    Log.d("HomeAFragment", "loadLatest: Success")
+                }
+                is BaseResponse.Error -> {}
+                else -> {}
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun addSearch() {
         binding.homeASearchEt.createObservable()
             .doOnNext {
                 showContainer()
@@ -52,7 +71,7 @@ class HomeFragmentA : Fragment() {
                     StringBuilder().append(it.trim()).append("%").toString()
                 if (it.isNotEmpty()) {
                     viewModel.getSearchWords()
-                    viewModel.result.observe(viewLifecycleOwner) { response ->
+                    viewModel.searchWordsResult.observe(viewLifecycleOwner) { response ->
                         when (response) {
                             is BaseResponse.Loading -> {}
                             is BaseResponse.Success -> {
@@ -79,6 +98,7 @@ class HomeFragmentA : Fragment() {
                                 stopLoading()
                                 closeContainer()
                             }
+                            else -> {}
                         }
                     }
                 } else {
