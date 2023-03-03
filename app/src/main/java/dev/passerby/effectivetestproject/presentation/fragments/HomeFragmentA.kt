@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
@@ -22,7 +23,8 @@ class HomeFragmentA : Fragment() {
     private var _binding: FragmentHomeABinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeAViewModel
-    private lateinit var adapter: SearchRVAdapter
+    private var mapper = SearchWordsMapper()
+    private lateinit var searchRVAdapter: SearchRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,17 +49,29 @@ class HomeFragmentA : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {
+                val searchText =
+                    StringBuilder().append(s?.trim()).append("%").toString()
                 viewModel.getSearchWords()
                 viewModel.result.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> {
+                            Log.d("HomeAFragment", "afterTextChanged: Loading")
                         }
                         is BaseResponse.Success -> {
                             Log.d("HomeAFragment", "Success")
                             if (it.data?.words?.isEmpty() == true) {
                                 throw Exception("List must be not null")
                             } else {
-                                adapter = SearchRVAdapter(it.data!!.words)
+                                Log.d("HomeAFragment", it.data?.words.toString())
+                                for (i in 0 until it.data?.words?.size!!) {
+                                    viewModel.addSearchWord(mapper.mapEntityToDbModel(it.data, i))
+                                    Log.d("HomeAFragment", "add Success")
+                                }
+                                searchRVAdapter = SearchRVAdapter()
+                                viewModel.getSearchWordsFromDB(searchText)
+                                    .observe(viewLifecycleOwner) { list ->
+                                        list?.let { searchRVAdapter.updateList(list) }
+                                    }
                                 binding.rv.apply {
                                     layoutManager =
                                         LinearLayoutManager(
@@ -65,7 +79,7 @@ class HomeFragmentA : Fragment() {
                                             LinearLayoutManager.VERTICAL,
                                             false
                                         )
-                                    adapter = adapter
+                                    adapter = searchRVAdapter
                                 }
                             }
                         }
