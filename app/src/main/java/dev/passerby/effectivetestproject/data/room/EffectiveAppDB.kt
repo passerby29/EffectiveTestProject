@@ -14,6 +14,7 @@ import androidx.room.RoomDatabase
 abstract class EffectiveAppDB : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+    abstract fun getSearchWordsDao(): SearchWordsDao
 
     companion object {
         @Volatile

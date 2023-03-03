@@ -4,10 +4,7 @@ import dev.passerby.effectivetestproject.domain.models.SearchWords
 
 class SearchWordsMapper {
 
-    fun mapListDbModel(list: List<SearchWordsEntity>) = list.map {
-        mapDbModelToEntity(it)
-    }
-
-    private fun mapDbModelToEntity(searchWordsEntity: SearchWordsEntity) = SearchWords(
-        words = searchWordsEntity.words)
+    fun mapEntityToDbModel(searchWords: SearchWords, position: Int) = SearchWordsEntity(
+        words = searchWords.words[position]
+    )
 }

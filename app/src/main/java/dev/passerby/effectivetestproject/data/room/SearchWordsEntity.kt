@@ -4,5 +4,5 @@ import androidx.room.*
 
 @Entity(tableName = "SearchWords", primaryKeys = ["words"])
 data class SearchWordsEntity(
-    @ColumnInfo val words: List<String>
+    @ColumnInfo val words: String
 )
