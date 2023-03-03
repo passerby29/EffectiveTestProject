@@ -1,16 +1,16 @@
 package dev.passerby.effectivetestproject.presentation.adapters
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.annotation.SuppressLint
+import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import dev.passerby.effectivetestproject.R
+import dev.passerby.effectivetestproject.data.room.SearchWordsEntity
 
-class SearchRVAdapter(
-    private val searchWords: List<String>
-) :
+class SearchRVAdapter :
     RecyclerView.Adapter<SearchRVAdapter.SearchViewHolder>() {
+
+    private val searchList = ArrayList<SearchWordsEntity>()
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemText: TextView = itemView.findViewById(R.id.text1)
@@ -25,9 +25,16 @@ class SearchRVAdapter(
         return SearchViewHolder(itemView)
     }
 
-    override fun getItemCount() = searchWords.size
+    override fun getItemCount() = searchList.size
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.itemText.text = searchWords[position]
+        holder.itemText.text = searchList[position].words
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<SearchWordsEntity>) {
+        searchList.clear()
+        searchList.addAll(newList)
+        notifyDataSetChanged()
     }
 }
