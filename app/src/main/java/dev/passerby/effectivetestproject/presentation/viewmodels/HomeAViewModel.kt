@@ -2,6 +2,7 @@ package dev.passerby.effectivetestproject.presentation.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dev.passerby.effectivetestproject.data.impls.MainRepositoryImpl
@@ -46,11 +47,7 @@ class HomeAViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getSearchWordsFromDG(filter: String): List<SearchWordsEntity> {
-        var list: List<SearchWordsEntity> = emptyList()
-        viewModelScope.launch(Dispatchers.IO) {
-             list = getSearchWordsFromDbUseCase.getSearchWordsFromDB(filter)
-        }
-        return list
+    fun getSearchWordsFromDB(filter: String): LiveData<List<SearchWordsEntity>> {
+        return getSearchWordsFromDbUseCase.getSearchWordsFromDB(filter)
     }
 }

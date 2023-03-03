@@ -1,9 +1,9 @@
 package dev.passerby.effectivetestproject.data.impls
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import dev.passerby.effectivetestproject.data.room.EffectiveAppDB
 import dev.passerby.effectivetestproject.data.room.SearchWordsEntity
-import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.APIs
 import dev.passerby.effectivetestproject.domain.models.FlashSaleItems
 import dev.passerby.effectivetestproject.domain.models.LatestItems
@@ -38,7 +38,7 @@ class MainRepositoryImpl(application: Application) : MainRepository {
         searchWordsDao.insert(searchWord)
     }
 
-    override suspend fun getSearchWordsFromDB(filter: String): List<SearchWordsEntity> {
+    override fun getSearchWordsFromDB(filter: String): LiveData<List<SearchWordsEntity>> {
         return searchWordsDao.getSearchWordsByFilter(filter)
     }
 }

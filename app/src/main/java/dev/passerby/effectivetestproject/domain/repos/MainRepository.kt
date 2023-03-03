@@ -20,5 +20,5 @@ interface MainRepository {
 
     suspend fun addSearchWordsToDB(searchWord: SearchWordsEntity)
 
-    suspend fun getSearchWordsFromDB(filter: String): List<SearchWordsEntity>
+    fun getSearchWordsFromDB(filter: String): LiveData<List<SearchWordsEntity>>
 }
