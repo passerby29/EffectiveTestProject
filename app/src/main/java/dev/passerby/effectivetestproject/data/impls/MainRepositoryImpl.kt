@@ -1,12 +1,17 @@
 package dev.passerby.effectivetestproject.data.impls
 
+import android.app.Application
+import androidx.lifecycle.LiveData
+import dev.passerby.effectivetestproject.data.room.EffectiveAppDB
+import dev.passerby.effectivetestproject.data.room.SearchWordsEntity
 import dev.passerby.effectivetestproject.data.server.APIs
 import dev.passerby.effectivetestproject.domain.models.*
 import dev.passerby.effectivetestproject.domain.repos.MainRepository
 import retrofit2.Response
 
-@Suppress("unused")
-object MainRepositoryImpl: MainRepository {
+class MainRepositoryImpl(application: Application) : MainRepository {
+
+    private val searchWordsDao = EffectiveAppDB.getDB(application).getSearchWordsDao()
 
     private val api = APIs.getApi()
 
@@ -24,5 +29,13 @@ object MainRepositoryImpl: MainRepository {
 
     override suspend fun getSearchWords(): Response<SearchWords>? {
         return api?.getSearchWords()
+    }
+
+    override suspend fun addSearchWordsToDB(searchWord: SearchWordsEntity) {
+        searchWordsDao.insert(searchWord)
+    }
+
+    override suspend fun getSearchWordsFromDB(filter: String): LiveData<List<SearchWordsEntity>> {
+        return searchWordsDao.getSearchWordsByFilter(filter)
     }
 }
