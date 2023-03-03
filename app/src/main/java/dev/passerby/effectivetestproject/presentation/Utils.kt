@@ -15,7 +15,7 @@ class Utils {
 fun TextInputEditText.createObservable(): Flowable<String> {
     return Flowable.create({
         addTextChangedListener(object : SimpleTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 it.onNext(s.toString())
             }
         })

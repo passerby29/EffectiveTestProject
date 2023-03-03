@@ -1,10 +1,9 @@
 package dev.passerby.effectivetestproject.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Editable
 import android.text.Html
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,10 @@ import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
+import dev.passerby.effectivetestproject.presentation.createObservable
 import dev.passerby.effectivetestproject.presentation.viewmodels.HomeAViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 class HomeFragmentA : Fragment() {
 
@@ -27,69 +29,64 @@ class HomeFragmentA : Fragment() {
     private lateinit var searchRVAdapter: SearchRVAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeABinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[HomeAViewModel::class.java]
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        addTextChangeListeners()
-    }
-
-    private fun addTextChangeListeners() {
-        binding.homeASearchEt.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        //addTextChangeListeners()
+        binding.homeASearchEt.createObservable()
+            .doOnNext {
+                showContainer()
+                showLoading()
             }
-
-            override fun afterTextChanged(s: Editable?) {
+            .debounce(1000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
                 val searchText =
-                    StringBuilder().append(s?.trim()).append("%").toString()
-                viewModel.getSearchWords()
-                viewModel.result.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is BaseResponse.Loading -> {
-                            Log.d("HomeAFragment", "afterTextChanged: Loading")
-                        }
-                        is BaseResponse.Success -> {
-                            Log.d("HomeAFragment", "Success")
-                            if (it.data?.words?.isEmpty() == true) {
-                                throw Exception("List must be not null")
-                            } else {
-                                Log.d("HomeAFragment", it.data?.words.toString())
-                                for (i in 0 until it.data?.words?.size!!) {
-                                    viewModel.addSearchWord(mapper.mapEntityToDbModel(it.data, i))
-                                    Log.d("HomeAFragment", "add Success")
-                                }
-                                searchRVAdapter = SearchRVAdapter()
-                                viewModel.getSearchWordsFromDB(searchText)
-                                    .observe(viewLifecycleOwner) { list ->
-                                        list?.let { searchRVAdapter.updateList(list) }
-                                    }
-                                binding.rv.apply {
-                                    layoutManager =
-                                        LinearLayoutManager(
-                                            requireContext(),
-                                            LinearLayoutManager.VERTICAL,
-                                            false
+                    StringBuilder().append(it.trim()).append("%").toString()
+                if (it.isNotEmpty()) {
+                    viewModel.getSearchWords()
+                    viewModel.result.observe(viewLifecycleOwner) { response ->
+                        when (response) {
+                            is BaseResponse.Loading -> {}
+                            is BaseResponse.Success -> {
+                                stopLoading()
+                                Log.d("HomeAFragment", "onViewCreated: Success")
+                                if (response.data?.words?.isEmpty() == true) {
+                                    throw Exception("No data in response")
+                                } else {
+                                    for (i in 0 until response.data?.words?.size!!) {
+                                        viewModel.addSearchWord(
+                                            mapper.mapEntityToDbModel(response.data, i)
                                         )
-                                    adapter = searchRVAdapter
+                                    }
+                                    searchRVAdapter = SearchRVAdapter()
+                                    viewModel.getSearchWordsFromDB(searchText)
+                                        .observe(viewLifecycleOwner) { list ->
+                                            list?.let { searchRVAdapter.updateList(list) }
+                                        }
+                                    Log.d("HomeAFragment", "onViewCreated: $it")
+                                    initRV()
                                 }
                             }
-                        }
-                        is BaseResponse.Error -> {
-                            Log.d("HomeAFragment", "Error")
+                            is BaseResponse.Error -> {
+                                stopLoading()
+                                closeContainer()
+                            }
                         }
                     }
+                } else {
+                    stopLoading()
+                    closeContainer()
+                    Log.d("HomeAFragment", "onViewCreated: Empty")
                 }
             }
-        })
     }
 
     private fun initViews() {
@@ -99,5 +96,30 @@ class HomeFragmentA : Fragment() {
             typeface = Typeface.DEFAULT_BOLD
             text = Html.fromHtml(first + next, 0)
         }
+    }
+
+    private fun initRV() {
+        binding.rv.apply {
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.VERTICAL, false
+            )
+            adapter = searchRVAdapter
+        }
+    }
+
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
+    }
+
+    private fun showContainer() {
+        binding.predictionsContainer.visibility = View.VISIBLE
+    }
+
+    private fun closeContainer() {
+        binding.predictionsContainer.visibility = View.GONE
+    }
+
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
     }
 }
