@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
+import dev.passerby.effectivetestproject.presentation.adapters.FlashSaleRVAdapter
+import dev.passerby.effectivetestproject.presentation.adapters.LatestRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
 import dev.passerby.effectivetestproject.presentation.createObservable
 import dev.passerby.effectivetestproject.presentation.viewmodels.HomeAViewModel
@@ -27,6 +29,8 @@ class HomeFragmentA : Fragment() {
     private lateinit var viewModel: HomeAViewModel
     private var mapper = SearchWordsMapper()
     private lateinit var searchRVAdapter: SearchRVAdapter
+    private lateinit var latestRVAdapter: LatestRVAdapter
+    private lateinit var flashSaleRVAdapter: FlashSaleRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,11 +40,68 @@ class HomeFragmentA : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        //addTextChangeListeners()
+        addSearch()
+        loadLatest()
+        loadFlashSale()
+    }
+
+    private fun loadLatest() {
+        viewModel.getLatestList()
+        viewModel.latestListResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is BaseResponse.Loading -> {}
+                is BaseResponse.Success -> {
+                    Log.d("HomeAFragment", "loadLatest: Success")
+                    if (response.data?.latest?.isEmpty() == true) {
+                        throw Exception("No data in response")
+                    } else {
+                        val list = response.data?.latest
+                        latestRVAdapter = LatestRVAdapter(list)
+                        binding.homeALatestRv.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(), LinearLayoutManager.HORIZONTAL, false
+                            )
+                            adapter = latestRVAdapter
+                        }
+                    }
+                }
+                is BaseResponse.Error -> {}
+                else -> {}
+            }
+        }
+    }
+
+    private fun loadFlashSale() {
+        viewModel.getFlashSaleList()
+        viewModel.flashSaleListResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is BaseResponse.Loading -> {}
+                is BaseResponse.Success -> {
+                    Log.d("HomeAFragment", "loadLatest: Success")
+                    if (response.data?.flash_sale?.isEmpty() == true) {
+                        throw Exception("No data in response")
+                    } else {
+                        val list = response.data?.flash_sale
+                        flashSaleRVAdapter = FlashSaleRVAdapter(list)
+                        binding.homeAFlashSaleRv.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(), LinearLayoutManager.HORIZONTAL, false
+                            )
+                            adapter = flashSaleRVAdapter
+                        }
+                    }
+                }
+                is BaseResponse.Error -> {}
+                else -> {}
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun addSearch() {
         binding.homeASearchEt.createObservable()
             .doOnNext {
                 showContainer()
@@ -52,7 +113,7 @@ class HomeFragmentA : Fragment() {
                     StringBuilder().append(it.trim()).append("%").toString()
                 if (it.isNotEmpty()) {
                     viewModel.getSearchWords()
-                    viewModel.result.observe(viewLifecycleOwner) { response ->
+                    viewModel.searchWordsResult.observe(viewLifecycleOwner) { response ->
                         when (response) {
                             is BaseResponse.Loading -> {}
                             is BaseResponse.Success -> {
@@ -79,6 +140,7 @@ class HomeFragmentA : Fragment() {
                                 stopLoading()
                                 closeContainer()
                             }
+                            else -> {}
                         }
                     }
                 } else {

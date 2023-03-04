@@ -87,11 +87,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/et_background"
         android:elevation="2dp"
-        app:cardCornerRadius="12dp"
         android:padding="8dp"
         android:visibility="gone"
-        android:background="@color/et_background"
+        app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="@+id/home_a_search_til"
         app:layout_constraintStart_toStartOf="@+id/home_a_search_til"
         app:layout_constraintTop_toBottomOf="@+id/home_a_search_til">
@@ -109,10 +109,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:overScrollMode="never"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/rv_words_item"
-            tools:itemCount="6"/>
+            android:overScrollMode="never"
+            tools:itemCount="6"
+            tools:listitem="@layout/rv_words_item" />
     </androidx.cardview.widget.CardView>
 
     <HorizontalScrollView
@@ -298,208 +298,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/home_a_latest_tv"
         app:layout_constraintEnd_toEndOf="@id/home_a_categories_ll" />
 
-    <LinearLayout
-        android:id="@+id/home_a_latest_ll"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/home_a_latest_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_a_latest_tv">
+        app:layout_constraintTop_toBottomOf="@id/home_a_latest_tv"
+        tools:ignore="RtlSymmetry">
 
-        <androidx.cardview.widget.CardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_a_latest_rv"
             android:layout_width="match_parent"
-            android:layout_height="148dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="16dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/background_cards"
-                android:scaleType="fitXY"
-                android:src="@drawable/rectangle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EAEAEA"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="@string/phones_title"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/item_name_placeholder"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/price_placeholder"
-                        android:textColor="@color/white"
-                        android:textSize="10sp" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="#EEEFF4"
-                        android:src="@drawable/ic_plus"
-                        app:contentPadding="4dp"
-                        app:shapeAppearance="@style/shape" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="148dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="16dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/background_cards"
-                android:scaleType="fitXY"
-                android:src="@drawable/rectangle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EAEAEA"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="@string/phones_title"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/item_name_placeholder"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/price_placeholder"
-                        android:textColor="@color/white"
-                        android:textSize="10sp" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="#EEEFF4"
-                        android:src="@drawable/ic_plus"
-                        app:contentPadding="4dp"
-                        app:shapeAppearance="@style/shape" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="148dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="16dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/background_cards"
-                android:scaleType="fitXY"
-                android:src="@drawable/rectangle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EAEAEA"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="@string/phones_title"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/item_name_placeholder"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/price_placeholder"
-                        android:textColor="@color/white"
-                        android:textSize="10sp" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="#EEEFF4"
-                        android:src="@drawable/ic_plus"
-                        app:contentPadding="4dp"
-                        app:shapeAppearance="@style/shape" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:paddingStart="8dp" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/textView7"
@@ -508,8 +325,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/flash_sale_title"
-        app:layout_constraintStart_toStartOf="@+id/home_a_latest_ll"
-        app:layout_constraintTop_toBottomOf="@+id/home_a_latest_ll" />
+        app:layout_constraintStart_toStartOf="@+id/home_a_latest_tv"
+        app:layout_constraintTop_toBottomOf="@+id/home_a_latest_container" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -521,144 +338,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/home_a_flash_sale_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
+        android:background="@android:color/transparent"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView7">
+        app:layout_constraintTop_toBottomOf="@id/textView7"
+        tools:ignore="RtlSymmetry">
 
-        <androidx.cardview.widget.CardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_a_flash_sale_rv"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="16dp">
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:paddingStart="8dp" />
+    </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/rectangle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EAEAEA"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="@string/phones_title"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/item_name_placeholder"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/price_placeholder"
-                        android:textColor="@color/black"
-                        android:textSize="10sp" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="#EEEFF4"
-                        android:src="@drawable/ic_plus"
-                        app:contentPadding="4dp"
-                        app:shapeAppearance="@style/shape" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="16dp">
-
-            <ImageView
-                android:id="@+id/item"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/background_cards"
-                android:scaleType="fitXY"
-                android:src="@drawable/rectangle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EAEAEA"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="@string/phones_title"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/item_name_placeholder"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/price_placeholder"
-                        android:textColor="@color/black"
-                        android:textSize="10sp" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="#EEEFF4"
-                        android:src="@drawable/ic_plus"
-                        app:contentPadding="4dp"
-                        app:shapeAppearance="@style/shape" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
