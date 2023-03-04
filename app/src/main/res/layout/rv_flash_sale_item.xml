@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/latest_container"
+    android:layout_width="172dp"
+    android:layout_height="220dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="16dp"
+    tools:ignore="SmallSp">
+
+    <ImageView
+        android:id="@+id/latest_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/et_background"
+        android:contentDescription="@string/background_cards"
+        android:scaleType="fitXY"
+        tools:src="@drawable/rectangle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textSize="10sp"
+        android:layout_margin="8dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="2dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:background="@drawable/sale_text_background"
+        android:textColor="@color/white"
+        tools:text="30% off" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/item_desc_background"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/latest_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="@string/phones_title"
+            android:textColor="@color/black"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/latest_name"
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="14sp"
+            tools:text="dfgdfdf\nsdfs" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/latest_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="@string/price_placeholder"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="#EEEFF4"
+                android:src="@drawable/ic_plus"
+                app:contentPadding="4dp"
+                app:shapeAppearance="@style/shape" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
