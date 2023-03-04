@@ -14,10 +14,10 @@ class FlashSaleRVAdapter(private val flashSale: List<FlashSale>?) :
     RecyclerView.Adapter<FlashSaleRVAdapter.FlashSaleViewHolder>() {
 
     class FlashSaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val background: ImageView = itemView.findViewById(R.id.latest_background)
-        val category: TextView = itemView.findViewById(R.id.latest_category)
-        val name: TextView = itemView.findViewById(R.id.latest_name)
-        val price: TextView = itemView.findViewById(R.id.latest_price)
+        val background: ImageView = itemView.findViewById(R.id.flash_sale_background)
+        val category: TextView = itemView.findViewById(R.id.flash_sale_category)
+        val name: TextView = itemView.findViewById(R.id.flash_sale_name)
+        val price: TextView = itemView.findViewById(R.id.flash_sale_price)
         val sale: TextView = itemView.findViewById(R.id.flash_sale_sale)
     }
 

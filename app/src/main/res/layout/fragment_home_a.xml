@@ -325,7 +325,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/flash_sale_title"
-        app:layout_constraintStart_toStartOf="@+id/home_a_latest_container"
+        app:layout_constraintStart_toStartOf="@+id/home_a_latest_tv"
         app:layout_constraintTop_toBottomOf="@+id/home_a_latest_container" />
 
     <TextView

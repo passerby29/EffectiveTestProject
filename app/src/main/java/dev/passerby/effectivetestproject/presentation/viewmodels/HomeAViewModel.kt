@@ -8,12 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dev.passerby.effectivetestproject.data.impls.MainRepositoryImpl
 import dev.passerby.effectivetestproject.data.room.SearchWordsEntity
 import dev.passerby.effectivetestproject.data.server.BaseResponse
+import dev.passerby.effectivetestproject.domain.models.FlashSaleItems
 import dev.passerby.effectivetestproject.domain.models.LatestItems
 import dev.passerby.effectivetestproject.domain.models.SearchWords
-import dev.passerby.effectivetestproject.domain.usecases.AddSearchWordsToDbUseCase
-import dev.passerby.effectivetestproject.domain.usecases.GetLatestListUseCase
-import dev.passerby.effectivetestproject.domain.usecases.GetSearchWordsFromDbUseCase
-import dev.passerby.effectivetestproject.domain.usecases.GetSearchWordsUseCase
+import dev.passerby.effectivetestproject.domain.usecases.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -26,9 +24,11 @@ class HomeAViewModel(application: Application) : AndroidViewModel(application) {
     private val addSearchWordToDbUseCase = AddSearchWordsToDbUseCase(repository)
     private val getSearchWordsFromDbUseCase = GetSearchWordsFromDbUseCase(repository)
     private val getLatestListUseCase = GetLatestListUseCase(repository)
+    private val getFlashSaleListUseCase = GetFlashSaleListUseCase(repository)
 
     var searchWordsResult: MutableLiveData<BaseResponse<SearchWords>?> = MutableLiveData()
     var latestListResult: MutableLiveData<BaseResponse<LatestItems>?> = MutableLiveData()
+    var flashSaleListResult: MutableLiveData<BaseResponse<FlashSaleItems>?> = MutableLiveData()
 
     fun getSearchWords() {
         viewModelScope.launch {
@@ -43,6 +43,14 @@ class HomeAViewModel(application: Application) : AndroidViewModel(application) {
             getData(response, latestListResult)
         }
     }
+
+    fun getFlashSaleList() {
+        viewModelScope.launch {
+            val response = getFlashSaleListUseCase.getFlashSaleList()
+            getData(response, flashSaleListResult)
+        }
+    }
+
 
     fun addSearchWord(searchWord: SearchWordsEntity) {
         viewModelScope.launch(Dispatchers.IO) {

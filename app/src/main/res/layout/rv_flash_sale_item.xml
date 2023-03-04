@@ -38,7 +38,7 @@
         android:layout_gravity="bottom"
         android:background="@drawable/item_desc_background"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/flash_sale_category"

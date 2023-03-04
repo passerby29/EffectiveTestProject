@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
+import dev.passerby.effectivetestproject.presentation.adapters.FlashSaleRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.LatestRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
 import dev.passerby.effectivetestproject.presentation.createObservable
@@ -29,6 +30,7 @@ class HomeFragmentA : Fragment() {
     private var mapper = SearchWordsMapper()
     private lateinit var searchRVAdapter: SearchRVAdapter
     private lateinit var latestRVAdapter: LatestRVAdapter
+    private lateinit var flashSaleRVAdapter: FlashSaleRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -43,6 +45,7 @@ class HomeFragmentA : Fragment() {
         initViews()
         addSearch()
         loadLatest()
+        loadFlashSale()
     }
 
     private fun loadLatest() {
@@ -62,6 +65,32 @@ class HomeFragmentA : Fragment() {
                                 requireContext(), LinearLayoutManager.HORIZONTAL, false
                             )
                             adapter = latestRVAdapter
+                        }
+                    }
+                }
+                is BaseResponse.Error -> {}
+                else -> {}
+            }
+        }
+    }
+
+    private fun loadFlashSale() {
+        viewModel.getFlashSaleList()
+        viewModel.flashSaleListResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is BaseResponse.Loading -> {}
+                is BaseResponse.Success -> {
+                    Log.d("HomeAFragment", "loadLatest: Success")
+                    if (response.data?.flash_sale?.isEmpty() == true) {
+                        throw Exception("No data in response")
+                    } else {
+                        val list = response.data?.flash_sale
+                        flashSaleRVAdapter = FlashSaleRVAdapter(list)
+                        binding.homeAFlashSaleRv.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(), LinearLayoutManager.HORIZONTAL, false
+                            )
+                            adapter = flashSaleRVAdapter
                         }
                     }
                 }
