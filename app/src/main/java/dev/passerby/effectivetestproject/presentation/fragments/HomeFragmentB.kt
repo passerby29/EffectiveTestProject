@@ -10,12 +10,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeBBinding
 import dev.passerby.effectivetestproject.presentation.adapters.SelectedItemRVAdapter
 import dev.passerby.effectivetestproject.presentation.viewmodels.HomeBViewModel
 
-class HomeFragmentB : Fragment() {
+class HomeFragmentB : Fragment(), SelectedItemRVAdapter.ItemClickListener {
 
     private var _binding: FragmentHomeBBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +49,7 @@ class HomeFragmentB : Fragment() {
                     } else {
                         val list = response.data.image_urls
                         addCarousel(list)
+                        Picasso.get().load(list[0]).into(binding.homeBMainIv)
                         binding.homeBItemNameTv.text = response.data.name
                         binding.homeBItemDescTv.text = response.data.description
                         binding.homeBRatingTv.text = response.data.rating.toString()
@@ -76,16 +78,20 @@ class HomeFragmentB : Fragment() {
     }
 
     private fun selectColor(selected: String) {
-        Toast.makeText(requireContext(), "Selected color ${selected}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Selected color $selected", Toast.LENGTH_SHORT).show()
     }
 
     private fun addCarousel(list: List<String>) {
-        selectedItemRVAdapter = SelectedItemRVAdapter(list)
+        selectedItemRVAdapter = SelectedItemRVAdapter(list, this)
         binding.imagesRv.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.HORIZONTAL, false
             )
             adapter = selectedItemRVAdapter
         }
+    }
+
+    override fun onItemClick(url: String) {
+        Picasso.get().load(url).into(binding.homeBMainIv)
     }
 }

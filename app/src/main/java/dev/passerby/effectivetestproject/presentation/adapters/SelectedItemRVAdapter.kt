@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dev.passerby.effectivetestproject.R
 
-class SelectedItemRVAdapter(private val urls: List<String>) :
+class SelectedItemRVAdapter(
+    private val urls: List<String>,
+    private val itemClickListener: ItemClickListener,
+) :
     RecyclerView.Adapter<SelectedItemRVAdapter.SelectedItemViewHolder>() {
 
     class SelectedItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,5 +31,12 @@ class SelectedItemRVAdapter(private val urls: List<String>) :
 
     override fun onBindViewHolder(holder: SelectedItemViewHolder, position: Int) {
         Picasso.get().load(urls[position]).into(holder.image)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(urls[position])
+        }
+    }
+
+    interface ItemClickListener {
+        fun onItemClick(url: String)
     }
 }
