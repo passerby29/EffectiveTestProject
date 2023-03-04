@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
+        android:background="@drawable/item_desc_background"
         android:padding="8dp"
         tools:ignore="SmallSp" >
 
@@ -39,9 +40,9 @@
         <TextView
             android:id="@+id/latest_name"
             android:layout_width="70dp"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginTop="4dp"
-            android:text="@string/item_name_placeholder"
+            tools:text="dfgdfdf\nsdfs"
             android:textColor="@color/white"
             android:textSize="10sp" />
 

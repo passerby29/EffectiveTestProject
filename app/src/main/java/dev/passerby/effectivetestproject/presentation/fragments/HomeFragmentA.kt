@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.squareup.picasso.Picasso
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
+import dev.passerby.effectivetestproject.presentation.adapters.LatestRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
 import dev.passerby.effectivetestproject.presentation.createObservable
 import dev.passerby.effectivetestproject.presentation.viewmodels.HomeAViewModel
@@ -28,6 +28,7 @@ class HomeFragmentA : Fragment() {
     private lateinit var viewModel: HomeAViewModel
     private var mapper = SearchWordsMapper()
     private lateinit var searchRVAdapter: SearchRVAdapter
+    private lateinit var latestRVAdapter: LatestRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,6 +52,18 @@ class HomeFragmentA : Fragment() {
                 is BaseResponse.Loading -> {}
                 is BaseResponse.Success -> {
                     Log.d("HomeAFragment", "loadLatest: Success")
+                    if (response.data?.latest?.isEmpty() == true) {
+                        throw Exception("No data in response")
+                    } else {
+                        val list = response.data?.latest
+                        latestRVAdapter = LatestRVAdapter(list)
+                        binding.homeALatestRv.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(), LinearLayoutManager.HORIZONTAL, false
+                            )
+                            adapter = latestRVAdapter
+                        }
+                    }
                 }
                 is BaseResponse.Error -> {}
                 else -> {}
