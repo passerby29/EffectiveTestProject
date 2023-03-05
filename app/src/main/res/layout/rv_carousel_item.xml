@@ -9,7 +9,7 @@
     app:cardCornerRadius="16dp">
 
     <ImageView
-        android:id="@+id/carousel_background1"
+        android:id="@+id/carousel_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/et_background"

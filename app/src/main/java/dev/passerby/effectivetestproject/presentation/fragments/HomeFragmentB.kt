@@ -1,5 +1,6 @@
 package dev.passerby.effectivetestproject.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -91,7 +92,10 @@ class HomeFragmentB : Fragment(), SelectedItemRVAdapter.ItemClickListener {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onItemClick(url: String) {
         Picasso.get().load(url).into(binding.homeBMainIv)
+        selectedItemRVAdapter.selectedItem = url
+        selectedItemRVAdapter.notifyDataSetChanged()
     }
 }
