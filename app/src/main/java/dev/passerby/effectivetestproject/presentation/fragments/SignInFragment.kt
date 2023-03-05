@@ -8,11 +8,14 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dev.passerby.effectivetestproject.R
 import dev.passerby.effectivetestproject.databinding.FragmentSignInBinding
+import dev.passerby.effectivetestproject.presentation.Utils
 import dev.passerby.effectivetestproject.presentation.viewmodels.SignInViewModel
+import java.util.regex.Pattern.compile
 
 class SignInFragment : Fragment() {
 
@@ -57,7 +60,11 @@ class SignInFragment : Fragment() {
             val inputFirstName = binding.signInFirstNameEt.text?.toString()
             val inputLastName = binding.signInLastNameEt.text?.toString()
             val inputEmail = binding.signInEmailEt.text?.toString()
-            viewModel.addUser(inputFirstName, inputLastName, inputEmail)
+            if (compile(Utils.emailPattern()).matcher(inputEmail.toString()).matches()){
+                viewModel.addUser(inputFirstName, inputLastName, inputEmail)
+            } else {
+                Toast.makeText(requireContext(), "Invalid email input", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
