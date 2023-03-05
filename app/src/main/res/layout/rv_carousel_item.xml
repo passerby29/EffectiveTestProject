@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/carousel_container1"
+    android:layout_width="84dp"
+    android:layout_height="60dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="16dp">
+
+    <ImageView
+        android:id="@+id/carousel_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/et_background"
+        android:contentDescription="@string/background_cards"
+        android:scaleType="fitXY"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@drawable/rectangle3" />
+</androidx.cardview.widget.CardView>
