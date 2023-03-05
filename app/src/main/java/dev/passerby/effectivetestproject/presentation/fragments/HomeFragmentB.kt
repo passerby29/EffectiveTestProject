@@ -89,6 +89,9 @@ class HomeFragmentB : Fragment(), SelectedItemRVAdapter.ItemClickListener {
                             }
                         }
                         setPriceBtn(response.data.price)
+                        binding.homeBBackBtn.setOnClickListener {
+                            parentFragmentManager.popBackStack()
+                        }
                     }
                 }
                 is BaseResponse.Error -> {}
