@@ -71,6 +71,12 @@ class HomeFragmentA : Fragment() {
                                 )
                                 adapter = latestRVAdapter
                             }
+                            binding.homeABrandsRv.apply {
+                                layoutManager = LinearLayoutManager(
+                                    requireContext(), LinearLayoutManager.HORIZONTAL, false
+                                )
+                                adapter = latestRVAdapter
+                            }
                         }
                     }
                 }
