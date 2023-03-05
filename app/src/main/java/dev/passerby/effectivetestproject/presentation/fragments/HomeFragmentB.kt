@@ -23,6 +23,7 @@ class HomeFragmentB : Fragment(), SelectedItemRVAdapter.ItemClickListener {
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeBViewModel
     private lateinit var selectedItemRVAdapter: SelectedItemRVAdapter
+    private var number = 1.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,12 +71,36 @@ class HomeFragmentB : Fragment(), SelectedItemRVAdapter.ItemClickListener {
                             setCardBackgroundColor(Color.parseColor(response.data.colors[2]))
                             setOnClickListener { selectColor(response.data.colors[2]) }
                         }
+                        binding.homeBPlusBtn.setOnClickListener {
+                            number++
+                            setPriceBtn(response.data.price)
+                        }
+                        binding.homeBMinusBtn.setOnClickListener {
+                            number--
+                            if (number < 0) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Quantity cannot be less than 0",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                number = 0.0
+                            } else {
+                                setPriceBtn(response.data.price)
+                            }
+                        }
+                        setPriceBtn(response.data.price)
                     }
                 }
                 is BaseResponse.Error -> {}
                 else -> {}
             }
         }
+    }
+
+    private fun setPriceBtn(price: Int) {
+        val count = number * price
+        val priceBtn = "$ ${count.toInt()}\tAdd to cart"
+        binding.homeBAddToCartBtn.text = priceBtn
     }
 
     private fun selectColor(selected: String) {
