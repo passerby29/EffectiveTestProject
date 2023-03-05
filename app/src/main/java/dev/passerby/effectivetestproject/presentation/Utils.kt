@@ -10,7 +10,13 @@ class Utils {
     fun parseInput(input: String?): String {
         return input?.trim() ?: ""
     }
+
+    companion object {
+        fun emailPattern() = "[a-zA-Z0-9\\-\\_\\.]{1,99}\\@[A-Za-z]{1,12}\\.[a-z]{1,6}"
+    }
 }
+
+
 
 fun TextInputEditText.createObservable(): Flowable<String> {
     return Flowable.create({

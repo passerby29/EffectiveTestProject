@@ -10,7 +10,10 @@ import com.squareup.picasso.Picasso
 import dev.passerby.effectivetestproject.R
 import dev.passerby.effectivetestproject.domain.models.FlashSale
 
-class FlashSaleRVAdapter(private val flashSale: List<FlashSale>?) :
+class FlashSaleRVAdapter(
+    private val flashSale: List<FlashSale>?,
+    private val itemClickListener: ItemClickListener,
+) :
     RecyclerView.Adapter<FlashSaleRVAdapter.FlashSaleViewHolder>() {
 
     class FlashSaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,5 +44,10 @@ class FlashSaleRVAdapter(private val flashSale: List<FlashSale>?) :
             holder.price.text = price
             holder.sale.text = sale
         }
+        holder.itemView.setOnClickListener { itemClickListener.onItemClick() }
+    }
+
+    interface ItemClickListener {
+        fun onItemClick()
     }
 }

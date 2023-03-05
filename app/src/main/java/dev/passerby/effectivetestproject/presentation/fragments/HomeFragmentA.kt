@@ -11,9 +11,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.passerby.effectivetestproject.R
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
+import dev.passerby.effectivetestproject.domain.models.FlashSale
+import dev.passerby.effectivetestproject.domain.models.Latest
 import dev.passerby.effectivetestproject.presentation.adapters.FlashSaleRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.LatestRVAdapter
 import dev.passerby.effectivetestproject.presentation.adapters.SearchRVAdapter
@@ -22,7 +25,7 @@ import dev.passerby.effectivetestproject.presentation.viewmodels.HomeAViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 
-class HomeFragmentA : Fragment() {
+class HomeFragmentA : Fragment(), FlashSaleRVAdapter.ItemClickListener {
 
     private var _binding: FragmentHomeABinding? = null
     private val binding get() = _binding!!
@@ -31,6 +34,8 @@ class HomeFragmentA : Fragment() {
     private lateinit var searchRVAdapter: SearchRVAdapter
     private lateinit var latestRVAdapter: LatestRVAdapter
     private lateinit var flashSaleRVAdapter: FlashSaleRVAdapter
+    private var latestList: List<Latest>? = null
+    private var flashSaleList: List<FlashSale>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -54,17 +59,25 @@ class HomeFragmentA : Fragment() {
             when (response) {
                 is BaseResponse.Loading -> {}
                 is BaseResponse.Success -> {
-                    Log.d("HomeAFragment", "loadLatest: Success")
                     if (response.data?.latest?.isEmpty() == true) {
                         throw Exception("No data in response")
                     } else {
-                        val list = response.data?.latest
-                        latestRVAdapter = LatestRVAdapter(list)
-                        binding.homeALatestRv.apply {
-                            layoutManager = LinearLayoutManager(
-                                requireContext(), LinearLayoutManager.HORIZONTAL, false
-                            )
-                            adapter = latestRVAdapter
+                        latestList = response.data?.latest
+                        Log.d("HomeAFragment", "loadLatest: ${latestList.toString()}")
+                        if (!latestList.isNullOrEmpty() || !flashSaleList.isNullOrEmpty()) {
+                            latestRVAdapter = LatestRVAdapter(latestList)
+                            binding.homeALatestRv.apply {
+                                layoutManager = LinearLayoutManager(
+                                    requireContext(), LinearLayoutManager.HORIZONTAL, false
+                                )
+                                adapter = latestRVAdapter
+                            }
+                            binding.homeABrandsRv.apply {
+                                layoutManager = LinearLayoutManager(
+                                    requireContext(), LinearLayoutManager.HORIZONTAL, false
+                                )
+                                adapter = latestRVAdapter
+                            }
                         }
                     }
                 }
@@ -80,17 +93,18 @@ class HomeFragmentA : Fragment() {
             when (response) {
                 is BaseResponse.Loading -> {}
                 is BaseResponse.Success -> {
-                    Log.d("HomeAFragment", "loadLatest: Success")
                     if (response.data?.flash_sale?.isEmpty() == true) {
                         throw Exception("No data in response")
                     } else {
-                        val list = response.data?.flash_sale
-                        flashSaleRVAdapter = FlashSaleRVAdapter(list)
-                        binding.homeAFlashSaleRv.apply {
-                            layoutManager = LinearLayoutManager(
-                                requireContext(), LinearLayoutManager.HORIZONTAL, false
-                            )
-                            adapter = flashSaleRVAdapter
+                        flashSaleList = response.data?.flash_sale
+                        if (!latestList.isNullOrEmpty() || !flashSaleList.isNullOrEmpty()) {
+                            flashSaleRVAdapter = FlashSaleRVAdapter(flashSaleList, this)
+                            binding.homeAFlashSaleRv.apply {
+                                layoutManager = LinearLayoutManager(
+                                    requireContext(), LinearLayoutManager.HORIZONTAL, false
+                                )
+                                adapter = flashSaleRVAdapter
+                            }
                         }
                     }
                 }
@@ -118,7 +132,6 @@ class HomeFragmentA : Fragment() {
                             is BaseResponse.Loading -> {}
                             is BaseResponse.Success -> {
                                 stopLoading()
-                                Log.d("HomeAFragment", "onViewCreated: Success")
                                 if (response.data?.words?.isEmpty() == true) {
                                     throw Exception("No data in response")
                                 } else {
@@ -133,7 +146,7 @@ class HomeFragmentA : Fragment() {
                                             list?.let { searchRVAdapter.updateList(list) }
                                         }
                                     Log.d("HomeAFragment", "onViewCreated: $it")
-                                    initRV()
+                                    initSearchRV()
                                 }
                             }
                             is BaseResponse.Error -> {
@@ -146,7 +159,6 @@ class HomeFragmentA : Fragment() {
                 } else {
                     stopLoading()
                     closeContainer()
-                    Log.d("HomeAFragment", "onViewCreated: Empty")
                 }
             }
     }
@@ -160,7 +172,7 @@ class HomeFragmentA : Fragment() {
         }
     }
 
-    private fun initRV() {
+    private fun initSearchRV() {
         binding.rv.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.VERTICAL, false
@@ -183,5 +195,11 @@ class HomeFragmentA : Fragment() {
 
     private fun stopLoading() {
         binding.loading.visibility = View.GONE
+    }
+
+    override fun onItemClick() {
+        parentFragmentManager.beginTransaction().replace(R.id.child_container, HomeFragmentB())
+            .addToBackStack(null)
+            .commit()
     }
 }

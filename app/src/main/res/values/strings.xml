@@ -48,5 +48,6 @@
     <string name="btn_add_to_cart_placeholder">$2,500 Add to cart</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_apple">Sign in with Apple</string>
+    <string name="brands_title">Brands</string>
     //
 </resources>
