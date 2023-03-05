@@ -6,226 +6,245 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.HomeFragmentB">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.88" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
-
-    <ImageView
-        android:id="@+id/home_b_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/return_btn_content_desc"
-        android:elevation="2dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/home_b_main_iv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        tools:src="@drawable/rectangle2"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/home_b_actions_cv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/add_to_fav_content_desc"
-                android:src="@drawable/ic_favorites"
-                app:tint="#545589" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/divider_content_desc"
-                android:src="@drawable/ic_minus"
-                app:tint="#545589" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/share_item_content_desc"
-                android:src="@drawable/ic_share"
-                app:tint="#545589" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/home_b_other_iv"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="16dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline2">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/images_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:overScrollMode="never"
-            tools:ignore="RtlSymmetry" />
-    </androidx.cardview.widget.CardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/home_b_item_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        tools:text="@string/item_selected_name_placeholder"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_b_other_iv" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.88" />
 
-    <TextView
-        android:id="@+id/home_b_item_price_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/poppins_semibold"
-        tools:text="@string/item_selected_price_placeholder"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/home_b_item_name_tv"
-        app:layout_constraintEnd_toEndOf="@+id/home_b_other_iv"
-        app:layout_constraintTop_toTopOf="@+id/home_b_item_name_tv" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6" />
 
-    <TextView
-        android:id="@+id/home_b_item_desc_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        tools:text="@string/desc_placeholder"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.013"
-        app:layout_constraintStart_toStartOf="@+id/home_b_item_name_tv"
-        app:layout_constraintTop_toBottomOf="@+id/home_b_item_name_tv"
-        tools:ignore="VisualLintOverlap" />
+            <ImageView
+                android:id="@+id/home_b_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/return_btn_content_desc"
+                android:elevation="2dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/home_b_reviews_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/home_b_item_desc_tv"
-        app:layout_constraintTop_toBottomOf="@+id/home_b_item_desc_tv">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/home_b_main_iv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large"
+                tools:src="@drawable/rectangle2" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="4dp"
-            android:contentDescription="@string/reviews_icon_content_desc"
-            android:src="@drawable/ic_star"
-            app:tint="#F6C042" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/home_b_actions_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/home_b_rating_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/reviews_mark_placeholder"
-            android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-        <TextView
-            android:id="@+id/home_b_number_of_reviews_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="@string/count_of_reviews_placeholder"
-            android:textSize="14sp"
-            tools:ignore="TextContrastCheck" />
-    </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/add_to_fav_content_desc"
+                        android:src="@drawable/ic_favorites"
+                        app:tint="#545589" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/color_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/home_b_reviews_ll"
-        app:layout_constraintTop_toBottomOf="@+id/home_b_reviews_ll"
-        tools:ignore="VisualLintOverlap" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/divider_content_desc"
+                        android:src="@drawable/ic_minus"
+                        app:tint="#545589" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/share_item_content_desc"
+                        android:src="@drawable/ic_share"
+                        app:tint="#545589" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_b_color1"
-            android:layout_width="40dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/home_b_other_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline2">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_b_color2"
-            android:layout_width="40dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#666666"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:overScrollMode="never"
+                    tools:ignore="RtlSymmetry" />
+            </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_b_color3"
-            android:layout_width="40dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="@color/black"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/home_b_item_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_b_other_iv"
+                tools:text="@string/item_selected_name_placeholder" />
+
+            <TextView
+                android:id="@+id/home_b_item_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/home_b_item_name_tv"
+                app:layout_constraintEnd_toEndOf="@+id/home_b_other_iv"
+                app:layout_constraintTop_toTopOf="@+id/home_b_item_name_tv"
+                tools:text="@string/item_selected_price_placeholder" />
+
+            <TextView
+                android:id="@+id/home_b_item_desc_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.013"
+                app:layout_constraintStart_toStartOf="@+id/home_b_item_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/home_b_item_name_tv"
+                tools:ignore="VisualLintOverlap"
+                tools:text="@string/desc_placeholder" />
+
+            <LinearLayout
+                android:id="@+id/home_b_reviews_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/home_b_item_desc_tv"
+                app:layout_constraintTop_toBottomOf="@+id/home_b_item_desc_tv">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/reviews_icon_content_desc"
+                    android:src="@drawable/ic_star"
+                    app:tint="#F6C042" />
+
+                <TextView
+                    android:id="@+id/home_b_rating_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/reviews_mark_placeholder"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/home_b_number_of_reviews_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/count_of_reviews_placeholder"
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/color_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/home_b_reviews_ll"
+                app:layout_constraintTop_toBottomOf="@+id/home_b_reviews_ll"
+                tools:ignore="VisualLintOverlap" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_b_color1"
+                    android:layout_width="40dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_b_color2"
+                    android:layout_width="40dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="#666666"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_b_color3"
+                    android:layout_width="40dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/black"
@@ -290,12 +309,12 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/btn_background"
-                tools:text="@string/btn_add_to_cart_placeholder"
                 android:textSize="12sp"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/btn_add_to_cart_placeholder" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
