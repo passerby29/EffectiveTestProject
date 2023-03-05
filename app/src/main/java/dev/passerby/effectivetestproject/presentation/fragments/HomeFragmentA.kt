@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.passerby.effectivetestproject.R
 import dev.passerby.effectivetestproject.data.room.SearchWordsMapper
 import dev.passerby.effectivetestproject.data.server.BaseResponse
 import dev.passerby.effectivetestproject.databinding.FragmentHomeABinding
@@ -24,7 +25,7 @@ import dev.passerby.effectivetestproject.presentation.viewmodels.HomeAViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 
-class HomeFragmentA : Fragment() {
+class HomeFragmentA : Fragment(), FlashSaleRVAdapter.ItemClickListener {
 
     private var _binding: FragmentHomeABinding? = null
     private val binding get() = _binding!!
@@ -97,7 +98,7 @@ class HomeFragmentA : Fragment() {
                     } else {
                         flashSaleList = response.data?.flash_sale
                         if (!latestList.isNullOrEmpty() || !flashSaleList.isNullOrEmpty()) {
-                            flashSaleRVAdapter = FlashSaleRVAdapter(flashSaleList)
+                            flashSaleRVAdapter = FlashSaleRVAdapter(flashSaleList, this)
                             binding.homeAFlashSaleRv.apply {
                                 layoutManager = LinearLayoutManager(
                                     requireContext(), LinearLayoutManager.HORIZONTAL, false
@@ -194,5 +195,11 @@ class HomeFragmentA : Fragment() {
 
     private fun stopLoading() {
         binding.loading.visibility = View.GONE
+    }
+
+    override fun onItemClick() {
+        parentFragmentManager.beginTransaction().replace(R.id.child_container, HomeFragmentB())
+            .addToBackStack(null)
+            .commit()
     }
 }
